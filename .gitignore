@@ -1,0 +1,5 @@
+main.c
+*.out
+*.txt
+.DS_Store
+*.dSYM/
