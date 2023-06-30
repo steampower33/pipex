@@ -3,3 +3,4 @@ main.c
 *.txt
 .DS_Store
 *.dSYM/
+.gitignore
