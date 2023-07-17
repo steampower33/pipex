@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/03 22:00:19 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/17 22:24:31 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,48 @@
 
 void	child1(t_pipex *data, char **argv, char **envp, int *fd)
 {
-	char	*path;
-
+	printf("%s\n", data->cmd_file[0]);
+	int i = 0;
+	while (data->cmd_option2[0][i])
+		printf("%s ", data->cmd_option2[0][i++]);
+	printf("\n");
 	data->infile_fd = open(argv[1], O_RDONLY | O_CREAT, 0644);
 	if (data->infile_fd == -1)
 		exit(1);
 	close(fd[0]);
-
-	if (access(data->cmd1[0], X_OK) == 0)
-		path = data->cmd1[0];
-	else
-	{
-		int idx = 0;
-		while (envp[idx])
-		{
-			if (ft_strnstr(envp[idx], "PATH=", 5))
-			{
-				// printf("%s\n", envp[idx]);
-				data->env_path = ft_split(envp[idx] + 5, ':');
-				int i = 0;
-				while (data->env_path[i])
-				{
-					path = ft_slushjoin(data->env_path[i], data->cmd1[0]);
-					// printf("%s\n", path);
-					if (access(path, X_OK) == 0)
-					{
-						printf("O\n");
-						break ;
-					}
-					i++;
-				}
-			}
-			idx++;
-		}
-	}
 	if (dup2(data->infile_fd, 0) == -1)
 		exit(1);
 	close(data->infile_fd);
 	if (dup2(fd[1], 1) == -1)
 		exit(1);
 	close(fd[1]);
-	execve(path, data->cmd1, envp);
+	if (execve(data->cmd_file[0], data->cmd_option2[0], envp) == -1)
+		exit(1);
 }
 
-void	child2(void)
+void	child2(t_pipex *data, char **argv, char **envp, int *fd)
 {
+	printf("%s\n", data->cmd_file[1]);
+	int i = 0;
+	while (data->cmd_option2[1][i])
+		printf("%s ", data->cmd_option2[1][i++]);
+	printf("\n");
+	data->outfile_fd = open(argv[6], O_WRONLY | O_CREAT, 0644);
+	if (data->outfile_fd == -1)
+		exit(1);
+	close(fd[1]);
+	if (dup2(fd[0], 0) == -1)
+		exit(1);
+	close(fd[0]);
+	if (dup2(data->outfile_fd, 1) == -1)
+		exit(1);
+	close(data->outfile_fd);
+	if (execve(data->cmd_file[1], data->cmd_option2[1], envp) == -1)
+		exit(1);
 }
 
-void	make_pipe(t_pipex *data, char **argv, char **envp)
+void	make_pipe(t_pipex *data, char **argv, char **envp, int *fd)
 {
-	int	fd[2];
 	int	pid1;
 	int	pid2;
 
@@ -81,7 +73,7 @@ void	make_pipe(t_pipex *data, char **argv, char **envp)
 		if (pid2 == -1)
 			exit(1);
 		else if (pid2 == 0)
-			child2();
+			child2(data, argv, envp, fd);
 		else
 		{
 			close(fd[0]);
@@ -95,12 +87,32 @@ void	make_pipe(t_pipex *data, char **argv, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	*data;
+	int		fd[2];
+	int		idx;
 
-	if (argc != 5)
-		exit(1);
 	data = (t_pipex *)malloc(sizeof(t_pipex));
-	data->cmd1 = ft_split(argv[2], ' ');
-	data->cmd2 = ft_split(argv[3], ' ');
-	make_pipe(data, argv, envp);
-	free(data);
+	cnt_cmd(argc, argv, envp, data);
+	if (data->cmd_cnt != 2)
+		exit(1);
+	data->cmd_file = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
+	data->cmd_file[data->cmd_cnt] = NULL;
+	data->cmd_option = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
+	data->cmd_option[data->cmd_cnt] = NULL;
+	ft_cmd_file(argc, data, argv, envp);
+	cmd_option(argc, argv, envp, data);
+	// int i = 0;
+	// int j = 0;
+	// while (data->cmd_option2[i][j])
+	// 	printf("%s\n", data->cmd_option2[i][j++]);
+	// i = 1;
+	// j = 0;
+	// while (data->cmd_option2[i][j])
+	// 	printf("%s\n", data->cmd_option2[i][j++]);
+	make_pipe(data, argv, envp, fd);
+	all_free(data->cmd_file);
+	all_free(data->cmd_option);
+	idx = 0;
+	while (data->cmd_option2[idx])
+		all_free(data->cmd_option2[idx++]);
+	free(data->cmd_option2);
 }
