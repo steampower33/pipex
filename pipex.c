@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/17 22:24:31 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:26:37 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 void	child1(t_pipex *data, char **argv, char **envp, int *fd)
 {
-	printf("%s\n", data->cmd_file[0]);
-	int i = 0;
-	while (data->cmd_option2[0][i])
-		printf("%s ", data->cmd_option2[0][i++]);
-	printf("\n");
 	data->infile_fd = open(argv[1], O_RDONLY | O_CREAT, 0644);
 	if (data->infile_fd == -1)
 		exit(1);
@@ -36,12 +31,7 @@ void	child1(t_pipex *data, char **argv, char **envp, int *fd)
 
 void	child2(t_pipex *data, char **argv, char **envp, int *fd)
 {
-	printf("%s\n", data->cmd_file[1]);
-	int i = 0;
-	while (data->cmd_option2[1][i])
-		printf("%s ", data->cmd_option2[1][i++]);
-	printf("\n");
-	data->outfile_fd = open(argv[6], O_WRONLY | O_CREAT, 0644);
+	data->outfile_fd = open(argv[ft_len(argv) - 1], O_WRONLY | O_CREAT, 0644);
 	if (data->outfile_fd == -1)
 		exit(1);
 	close(fd[1]);
@@ -100,14 +90,6 @@ int	main(int argc, char **argv, char **envp)
 	data->cmd_option[data->cmd_cnt] = NULL;
 	ft_cmd_file(argc, data, argv, envp);
 	cmd_option(argc, argv, envp, data);
-	// int i = 0;
-	// int j = 0;
-	// while (data->cmd_option2[i][j])
-	// 	printf("%s\n", data->cmd_option2[i][j++]);
-	// i = 1;
-	// j = 0;
-	// while (data->cmd_option2[i][j])
-	// 	printf("%s\n", data->cmd_option2[i][j++]);
 	make_pipe(data, argv, envp, fd);
 	all_free(data->cmd_file);
 	all_free(data->cmd_option);

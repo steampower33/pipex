@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/17 20:25:02 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:27:05 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ char	*check_path(t_pipex *data, char *cmd, char **envp)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_len(char **argv)
+{
+	int	idx;
+
+	idx = 0;
+	while (argv[idx])
+		idx++;
+	return (idx);
 }
