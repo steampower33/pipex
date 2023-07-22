@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 19:27:05 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/22 20:09:19 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,20 @@ int	ft_len(char **argv)
 	while (argv[idx])
 		idx++;
 	return (idx);
+}
+
+int	ft_strchr_idx(char *s, char c)
+{
+	size_t	idx;
+	size_t	len;
+
+	idx = 0;
+	len = ft_strlen(s);
+	while (idx < len + 1)
+	{
+		if (s[idx] == (char)c)
+			return (idx);
+		idx++;
+	}
+	return (0);
 }

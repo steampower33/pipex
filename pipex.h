@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 19:44:19 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/22 20:09:27 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_pipex
 
 char	*check_path(t_pipex *data, char *cmd, char **envp);
 int		ft_len(char **argv);
+int		ft_strchr_idx(char *s, char c);
 
 void	make_pipe(t_pipex *data, char **argv, char **envp, int *fd);
 void	child1(t_pipex *data, char **argv, char **envp, int *fd);
