@@ -6,7 +6,7 @@
 #    By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 17:31:22 by seunlee2          #+#    #+#              #
-#    Updated: 2023/07/24 19:31:11 by seunlee2         ###   ########.fr        #
+#    Updated: 2023/07/24 19:34:13 by seunlee2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS = pipex.c ft_slushjoin.c ft_cmd_split.c ft_check.c ft_free.c ft_newjoin.c f
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_PATH = my_libft
+LIBFT_PATH = libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I $(LIBFT_PATH) -o $@ -c $<
