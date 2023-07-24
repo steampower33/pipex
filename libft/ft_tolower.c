@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/18 18:00:41 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/06/29 19:49:14 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-void	all_free(char **str)
+int	ft_tolower(int c)
 {
-	int	idx;
-
-	if (!str || !*str)
-		return ;
-	idx = 0;
-	while (str[idx])
-	{
-		free(str[idx]);
-		idx++;
-	}
-	free(str);
+	if (65 <= c && c <= 90)
+		return (c + 32);
+	else
+		return (c);
 }

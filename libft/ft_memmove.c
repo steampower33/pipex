@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/18 16:12:57 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/23 14:40:30 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	idx;
+	size_t			idx;
 
-	if (!str || !*str)
-		return ;
+	if (dst == 0 && src == 0)
+		return (dst);
 	idx = 0;
-	while (str[idx])
+	if (dst > src)
 	{
-		free(str[idx]);
-		idx++;
+		while (idx < len)
+		{
+			((unsigned char *)dst)[len - 1 - idx]
+				= ((unsigned char *)src)[len - 1 - idx];
+			idx++;
+		}
 	}
-	free(str);
+	else
+	{
+		while (idx < len)
+		{
+			((unsigned char *)dst)[idx] = ((unsigned char *)src)[idx];
+			idx++;
+		}
+	}
+	return (dst);
 }

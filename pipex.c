@@ -6,12 +6,11 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 19:26:37 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:28:55 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
 void	child1(t_pipex *data, char **argv, char **envp, int *fd)
 {

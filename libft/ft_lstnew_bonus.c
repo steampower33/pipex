@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/21 20:14:27 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/24 15:56:25 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+t_list	*ft_lstnew(void *content)
 {
-	int	idx;
+	t_list	*l;
 
-	if (!str || !*str)
-		return ;
-	idx = 0;
-	while (str[idx])
-	{
-		free(str[idx]);
-		idx++;
-	}
-	free(str);
+	l = (t_list *)malloc(sizeof(t_list));
+	if (!l)
+		return (NULL);
+	l -> content = content;
+	l -> next = NULL;
+	return (l);
 }

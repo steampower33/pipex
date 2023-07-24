@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_newjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 21:38:42 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 19:29:21 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/19 11:53:23 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/27 17:11:50 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcat(char *s, const char *s1, const char *s2)
+static char	*ft_strcpy(
+	char const *s, char	*sub_s, unsigned int start, size_t len)
 {
 	size_t	idx;
 
 	idx = 0;
-	while (idx < ft_strlen(s1))
+	while (s[start + idx] && idx < len)
 	{
-		s[idx] = s1[idx];
+		sub_s[idx] = s[start + idx];
 		idx++;
 	}
-	s[idx] = ' ';
-	idx = 0;
-	while (idx < ft_strlen(s2) + 1)
-	{
-		s[ft_strlen(s1) + 1 + idx] = s2[idx];
-		idx++;
-	}
-	s[ft_strlen(s1) + idx] = '\0';
-	return (s);
+	sub_s[idx] = '\0';
+	return (sub_s);
 }
 
-char	*ft_newjoin(char const *s1, char const *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	len;
-	char	*s;
+	char	*sub_s;
 
-	if (!ft_strlen(s1) && !ft_strlen(s2))
+	if (start > ft_strlen(s))
 		return ((char *)ft_calloc(sizeof(char), 1));
-	len = ft_strlen(s1) + ft_strlen(s2) + 2;
-	s = (char *) malloc(sizeof(char) * len);
-	if (!s)
+	if (start + len < ft_strlen(s))
+		sub_s = (char *) malloc(sizeof(char) * (len + 1));
+	else
+		sub_s = (char *) malloc(sizeof(char) * (ft_strlen(s) - start + 1));
+	if (!sub_s)
 		return (NULL);
-	return (ft_strcat(s, s1, s2));
+	return (ft_strcpy(s, sub_s, start, len));
 }

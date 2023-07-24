@@ -6,12 +6,11 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 20:09:19 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:29:14 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
 char	*check_path(t_pipex *data, char *cmd, char **envp)
 {

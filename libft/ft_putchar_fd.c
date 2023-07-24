@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/21 17:02:16 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/24 19:56:09 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	idx;
-
-	if (!str || !*str)
-		return ;
-	idx = 0;
-	while (str[idx])
-	{
-		free(str[idx]);
-		idx++;
-	}
-	free(str);
+	write(fd, &c, 1);
 }

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/18 20:52:55 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/23 15:09:13 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	idx;
+	size_t			idx;
 
-	if (!str || !*str)
-		return ;
 	idx = 0;
-	while (str[idx])
+	while (idx < n)
 	{
-		free(str[idx]);
+		if (((unsigned char *)s)[idx] == (unsigned char)c)
+			return ((unsigned char *)&s[idx]);
 		idx++;
 	}
-	free(str);
+	return (NULL);
 }

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/19 11:50:26 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/23 15:25:37 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+char	*ft_strdup(const char *s1)
 {
-	int	idx;
+	size_t	src_len;
+	size_t	dest_len;
+	char	*dest;
 
-	if (!str || !*str)
-		return ;
-	idx = 0;
-	while (str[idx])
+	src_len = 0;
+	while (s1[src_len])
+		src_len++;
+	dest = (char *)malloc((sizeof(char) * (src_len + 1)));
+	if (dest == NULL)
+		return (NULL);
+	dest_len = 0;
+	while (dest_len < src_len)
 	{
-		free(str[idx]);
-		idx++;
+		dest[dest_len] = s1[dest_len];
+		dest_len++;
 	}
-	free(str);
+	dest[dest_len] = '\0';
+	return (dest);
 }

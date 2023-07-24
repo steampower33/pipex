@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/21 16:43:12 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/24 21:36:39 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	idx;
+	size_t	idx;
+	char	*res;
 
-	if (!str || !*str)
-		return ;
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!res)
+		return (NULL);
 	idx = 0;
-	while (str[idx])
+	while (s[idx])
 	{
-		free(str[idx]);
+		res[idx] = (*f)(idx, s[idx]);
 		idx++;
 	}
-	free(str);
+	res[idx] = '\0';
+	return (res);
 }

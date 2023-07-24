@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 19:03:43 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:57:11 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/03/22 16:05:11 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/03/24 15:26:47 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	all_free(char **str)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	idx;
+	t_list	*l;
 
-	if (!str || !*str)
-		return ;
-	idx = 0;
-	while (str[idx])
+	l = lst;
+	while (lst)
 	{
-		free(str[idx]);
-		idx++;
+		if (!lst->next)
+		{
+			(*f)(lst->content);
+			break ;
+		}
+		(*f)(lst->content);
+		lst = lst->next;
 	}
-	free(str);
+	lst = l;
 }

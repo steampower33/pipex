@@ -6,12 +6,11 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 18:50:48 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 19:30:05 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
 void	cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
 {
@@ -28,13 +27,13 @@ void	cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
 		{
 			str = ft_split(argv[idx], ' ');
 			file = check_path(data, str[0], envp);
+			if (str)
+				all_free(str);
 		}
 		else
 			file = check_path(data, argv[idx], envp);
 		if (file)
 			cnt++;
-		if (str)
-			all_free(str);
 		free(file);
 		idx++;
 	}
@@ -50,19 +49,20 @@ void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
 
 	idx = 2;
 	cnt = 0;
+	str = NULL;
 	while (idx < argc - 1)
 	{
 		if (ft_strchr(argv[idx], ' '))
 		{
 			str = ft_split(argv[idx], ' ');
 			file = check_path(data, str[0], envp);
+			if (str)
+				all_free(str);
 		}
 		else
 			file = check_path(data, argv[idx], envp);
 		if (file)
 			data->cmd_file[cnt++] = ft_strdup(file);
-		if (str)
-			all_free(str);
 		free(file);
 		idx++;
 	}
