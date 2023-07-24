@@ -6,12 +6,12 @@
 #    By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 17:31:22 by seunlee2          #+#    #+#              #
-#    Updated: 2023/07/24 20:07:51 by seunlee2         ###   ########.fr        #
+#    Updated: 2023/07/24 22:22:07 by seunlee2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-SRCS = pipex.c ft_slushjoin.c ft_cmd_split.c ft_check.c ft_free.c ft_newjoin.c ft_strndup.c
+SRCS = pipex.c ft_slushjoin.c ft_cmd.c ft_cmd_utils.c ft_utils.c ft_newjoin.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

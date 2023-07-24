@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check.c                                         :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 19:29:14 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:26:02 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*check_path(t_pipex *data, char *cmd, char **envp)
+char	*ft_check_path(t_pipex *data, char *cmd, char **envp)
 {
 	int		i;
 	int		j;
@@ -30,7 +30,7 @@ char	*check_path(t_pipex *data, char *cmd, char **envp)
 			while (data->env_path[j])
 			{
 				path = ft_slushjoin(data->env_path[j], cmd);
-				if (access(path, X_OK) == 0)
+				if (access(path, F_OK) == 0)
 					return (path);
 				free(path);
 				j++;
@@ -65,4 +65,37 @@ int	ft_strchr_idx(char *s, char c)
 		idx++;
 	}
 	return (0);
+}
+
+void	ft_all_free(char **str)
+{
+	int	idx;
+
+	if (!str || !*str)
+		return ;
+	idx = 0;
+	while (str[idx])
+	{
+		free(str[idx]);
+		idx++;
+	}
+	free(str);
+}
+
+char	*ft_strndup(const char *src, size_t size)
+{
+	size_t	dest_len;
+	char	*dest;
+
+	dest = (char *)malloc((sizeof(char) * (size + 1)));
+	if (dest == NULL)
+		return (NULL);
+	dest_len = 0;
+	while (dest_len < size)
+	{
+		dest[dest_len] = src[dest_len];
+		dest_len++;
+	}
+	dest[dest_len] = '\0';
+	return (dest);
 }
