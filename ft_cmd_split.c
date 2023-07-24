@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 20:22:46 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:50:48 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ char	*get_file(char *argv, char **envp, t_pipex *data, int *flag)
 void	cmd_option2(t_pipex *data)
 {
 	int		idx;
-	int		idx2;
-	char	**tmp;
 
 	data->cmd_option2 = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
 	data->cmd_option2[data->cmd_cnt] = NULL;
@@ -104,17 +102,6 @@ void	cmd_option2(t_pipex *data)
 	while (idx < data->cmd_cnt)
 	{
 		data->cmd_option2[idx] = ft_split(data->cmd_option[idx], ' ');
-		idx2 = 0;
-		while (data->cmd_option2[idx][idx2])
-		{
-			if (ft_strchr(data->cmd_option2[idx][idx2], '\''))
-				ft_split(data->cmd_option2[idx][idx2], '\'');
-			if (ft_strchr(data->cmd_option2[idx][idx2], '\"'))
-				ft_split(data->cmd_option2[idx][idx2], '\"');
-			if (ft_strchr(data->cmd_option2[idx][idx2], '`'))
-				ft_split(data->cmd_option2[idx][idx2], '`');
-			idx2++;
-		}
 		idx++;
 	}
 }
