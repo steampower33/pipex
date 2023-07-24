@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/22 20:09:27 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:10:05 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_pipex
 {
