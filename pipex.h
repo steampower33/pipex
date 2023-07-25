@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 20:58:09 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:59:35 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ void	ft_cmd2(t_pipex *data);
 char	*ft_newjoin(char const *s1, char const *s2);
 
 char	*ft_slushjoin(char const *s1, char const *s2);
-
-char	*ft_quote(char *str, int len);
 
 #endif
