@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 21:33:41 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/07/25 21:52:34 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/07/25 21:54:13 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data)
 			data->cmd1[cnt] = ft_newjoin(tmp, argv[idx]);
 			free(tmp);
 		}
-		if (file)
-			free(file);
-		file = NULL;
+		free(file);
 		idx++;
 	}
 	ft_cmd2(data);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 21:50:00 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/07/25 21:51:56 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/07/25 21:54:35 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv, char **envp)
 	data = (t_pipex *)malloc(sizeof(t_pipex));
 	ft_cnt_cmd(argc, argv, envp, data);
 	if (data->cmd_cnt != 2)
-		ft_print_error("Arguments Error");
+		exit(1);
 	data->cmd_file = (char **)malloc(sizeof(char *) * (3));
 	data->cmd_file[2] = NULL;
 	data->cmd1 = (char **)malloc(sizeof(char *) * (3));

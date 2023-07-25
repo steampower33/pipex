@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 21:39:46 by seunlee2         ###   ########.fr       */
+/*   Created: 2023/07/25 21:52:26 by seunlee2          #+#    #+#             */
+/*   Updated: 2023/07/25 21:52:29 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,31 +91,4 @@ char	*ft_get_file(char *argv, char **envp, t_pipex *data, int *flag)
 	if (str)
 		free(str);
 	return (file);
-}
-
-char	*ft_quote(char *str, int len)
-{
-	int	start;
-	int	end;
-
-	start = 0;
-	end = 0;
-	while (str[start])
-	{
-		if (str[start] == '`' || str[start] == '\'' || str[start] == '\"')
-			start++;
-		else
-			break ;
-	}
-	while (str[len - 1 - end])
-	{
-		if (str[len - 1 - end] == '`' || str[len - 1 - end] == '\''
-			|| str[len - 1 - end] == '\"')
-			end++;
-		else
-			break ;
-	}
-	if (end != 0)
-		end++;
-	return (ft_strndup(str + start, len - end));
 }
