@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 22:27:17 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:44:16 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,11 @@ void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
 	str = NULL;
 	while (idx < argc - 1)
 	{
-		if (ft_strchr(argv[idx], ' '))
-		{
-			str = ft_split(argv[idx], ' ');
+		str = ft_split(argv[idx], ' ');
+		if (str[0])
 			file = ft_check_path(data, str[0], envp);
-			if (str)
-				ft_all_free(str);
-		}
-		else
-			file = ft_check_path(data, argv[idx], envp);
+		if (str)
+			ft_all_free(str);
 		if (file)
 			data->cmd_file[cnt++] = ft_strdup(file);
 		free(file);

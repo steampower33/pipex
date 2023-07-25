@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 22:26:02 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:44:45 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_check_path(t_pipex *data, char *cmd, char **envp)
 			while (data->env_path[j])
 			{
 				path = ft_slushjoin(data->env_path[j], cmd);
-				if (access(path, F_OK) == 0)
+				if (access(path, X_OK) == 0)
 					return (path);
 				free(path);
 				j++;

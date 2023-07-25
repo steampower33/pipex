@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 22:25:01 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:35:59 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_child1(t_pipex *data, char **argv, char **envp, int *fd)
 void	ft_child2(t_pipex *data, char **argv, char **envp, int *fd)
 {
 	data->outfile_fd = open(argv[ft_len(argv) - 1], O_WRONLY | O_CREAT, 0644);
+	printf("명령어 => %s 가 없없어어요요!!!!!!!!!!!!!!!!\n", data->cmd_file[1]);
 	if (data->outfile_fd == -1)
 		exit(1);
 	close(fd[1]);
