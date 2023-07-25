@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 16:44:45 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:06:32 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_all_free(char **str)
 {
 	int	idx;
 
-	if (!str || !*str)
+	if (!str)
 		return ;
 	idx = 0;
 	while (str[idx])

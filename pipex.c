@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:09 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 16:35:59 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:12:38 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_child1(t_pipex *data, char **argv, char **envp, int *fd)
 void	ft_child2(t_pipex *data, char **argv, char **envp, int *fd)
 {
 	data->outfile_fd = open(argv[ft_len(argv) - 1], O_WRONLY | O_CREAT, 0644);
-	printf("명령어 => %s 가 없없어어요요!!!!!!!!!!!!!!!!\n", data->cmd_file[1]);
 	if (data->outfile_fd == -1)
 		exit(1);
 	close(fd[1]);
@@ -82,12 +81,14 @@ int	main(int argc, char **argv, char **envp)
 
 	data = (t_pipex *)malloc(sizeof(t_pipex));
 	ft_cnt_cmd(argc, argv, envp, data);
-	if (data->cmd_cnt != 2)
+	if (data->cmd_cnt > 2 || argc < 5)
 		exit(1);
-	data->cmd_file = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
-	data->cmd_file[data->cmd_cnt] = NULL;
-	data->cmd1 = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
-	data->cmd1[data->cmd_cnt] = NULL;
+	data->cmd_file = (char **)malloc(sizeof(char *) * (3));
+	data->cmd_file[2] = NULL;
+	data->cmd1 = (char **)malloc(sizeof(char *) * (3));
+	data->cmd1[2] = NULL;
+	data->cmd2 = (char ***)malloc(sizeof(char **) * (3));
+	data->cmd2[2] = NULL;
 	ft_cmd_file(argc, data, argv, envp);
 	ft_cmd1(argc, argv, envp, data);
 	ft_make_pipe(data, argv, envp, fd);
