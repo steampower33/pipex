@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 16:44:52 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:33:41 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data)
 			data->cmd1[cnt] = ft_newjoin(tmp, argv[idx]);
 			free(tmp);
 		}
-		free(file);
+		if (file)
+			free(file);
+		file = NULL;
 		idx++;
 	}
 	ft_cmd2(data);
@@ -42,24 +44,13 @@ void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data)
 void	ft_cmd2(t_pipex *data)
 {
 	int		idx;
-	int		space_idx;
 
-	data->cmd2 = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
-	data->cmd2[data->cmd_cnt] = NULL;
+	data->cmd2 = (char ***)malloc(sizeof(char **) * (3));
+	data->cmd2[2] = NULL;
 	idx = 0;
-	while (idx < data->cmd_cnt)
+	while (idx < 2)
 	{
-		if (ft_strnstr(data->cmd1[idx], "awk", 3))
-		{
-			space_idx = ft_strchr_idx(data->cmd1[idx], ' ');
-			data->cmd2[idx] = (char **)malloc(sizeof(char *) * 3);
-			data->cmd2[idx][0] = ft_strndup(data->cmd1[idx], space_idx);
-			data->cmd2[idx][1] = ft_quote(data->cmd1[idx] + space_idx + 1,
-					ft_strlen(data->cmd1[idx] + space_idx + 1));
-			data->cmd2[idx][2] = NULL;
-		}
-		else
-			data->cmd2[idx] = ft_split(data->cmd1[idx], ' ');
+		data->cmd2[idx] = ft_split(data->cmd1[idx], ' ');
 		idx++;
 	}
 }

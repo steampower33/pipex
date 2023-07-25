@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:44:47 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 18:19:30 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:39:46 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
 
 	idx = 2;
 	cnt = 0;
+	file = NULL;
 	while (idx < argc - 1)
 	{
-		if (ft_strchr(argv[idx], ' '))
-		{
-			str = ft_split(argv[idx], ' ');
+		str = ft_split(argv[idx], ' ');
+		if (str[0])
 			file = ft_check_path(data, str[0], envp);
-			if (str)
-				ft_all_free(str);
-		}
-		else
-			file = ft_check_path(data, argv[idx], envp);
+		if (str)
+			ft_all_free(str);
 		if (file)
+		{
 			cnt++;
-		free(file);
+			free(file);
+			file = NULL;
+		}
 		idx++;
 	}
 	data->cmd_cnt = cnt;
@@ -50,20 +50,20 @@ void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
 	idx = 2;
 	cnt = 0;
 	str = NULL;
+	file = NULL;
 	while (idx < argc - 1)
 	{
-		if (ft_strchr(argv[idx], ' '))
-		{
-			str = ft_split(argv[idx], ' ');
+		str = ft_split(argv[idx], ' ');
+		if (str[0])
 			file = ft_check_path(data, str[0], envp);
-			if (str)
-				ft_all_free(str);
-		}
-		else
-			file = ft_check_path(data, argv[idx], envp);
+		if (str)
+			ft_all_free(str);
 		if (file)
+		{
 			data->cmd_file[cnt++] = ft_strdup(file);
-		free(file);
+			free(file);
+			file = NULL;
+		}
 		idx++;
 	}
 }
@@ -74,12 +74,13 @@ char	*ft_get_file(char *argv, char **envp, t_pipex *data, int *flag)
 	char	*file;
 
 	str = NULL;
+	file = NULL;
 	if (ft_strchr(argv, ' '))
 	{
 		str = ft_split(argv, ' ');
 		file = ft_check_path(data, str[0], envp);
 	}
-	else
+	else if (argv[0])
 		file = ft_check_path(data, argv, envp);
 	if (str && file)
 		*flag = 0;

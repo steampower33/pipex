@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/24 21:43:54 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:58:09 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	ft_make_pipe(t_pipex *data, char **argv, char **envp, int *fd);
 void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data);
 void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp);
 char	*ft_get_file(char *argv, char **envp, t_pipex *data, int *flag);
+
 void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data);
+void	ft_cmd1_split(char *argv, char **envp, t_pipex *data);
 void	ft_cmd2(t_pipex *data);
 
 char	*ft_newjoin(char const *s1, char const *s2);
