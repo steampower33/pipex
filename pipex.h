@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/26 11:12:26 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:01:05 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipex
 char	*ft_check_path(t_pipex *data, char *cmd, char **envp);
 int		ft_strchr_idx(char *s, char c);
 void	ft_all_free(char **str);
+void	ft_last_free(t_pipex *data);
 char	*ft_strndup(const char *src, size_t size);
 int		ft_len(char **argv);
 void	ft_error_handler(char *str);

@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:51:56 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/26 11:15:44 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:59:34 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,20 @@ void	ft_make_pipe(t_pipex *data, char **argv, char **envp, int *fd)
 	}
 }
 
-void	ft_error_handler(char *str)
-{
-	perror(str);
-	exit(1);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	*data;
 	int		fd[2];
-	int		idx;
 
 	data = (t_pipex *)malloc(sizeof(t_pipex));
 	ft_cnt_cmd(argc, argv, envp, data);
-	if (data->cmd_cnt != 2)
-		ft_error_handler("Not 2 Arguments");
+	if (argc != 5)
+		ft_error_handler("Not 4 Arguments");
 	if (!ft_make_cmds(data))
 		ft_error_handler("Malloc Error");
 	ft_cmd_file(argc, data, argv, envp);
 	ft_cmd1(argc, argv, envp, data);
 	ft_make_pipe(data, argv, envp, fd);
-	ft_all_free(data->cmd_file);
-	ft_all_free(data->cmd1);
-	idx = 0;
-	while (data->cmd2[idx])
-		ft_all_free(data->cmd2[idx++]);
-	free(data->cmd2);
+	ft_last_free(data);
 	return (0);
 }
