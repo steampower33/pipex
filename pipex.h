@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 22:06:06 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:37:30 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,16 @@ int		ft_len(char **argv);
 int		ft_strchr_idx(char *s, char c);
 void	ft_all_free(char **str);
 char	*ft_strndup(const char *src, size_t size);
-
 void	ft_child1(t_pipex *data, char **argv, char **envp, int *fd);
 void	ft_child2(t_pipex *data, char **argv, char **envp, int *fd);
 void	ft_make_pipe(t_pipex *data, char **argv, char **envp, int *fd);
-
 void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data);
 void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp);
 char	*ft_get_file(char *argv, char **envp, t_pipex *data, int *flag);
-
 void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data);
 void	ft_cmd1_split(char *argv, char **envp, t_pipex *data);
 void	ft_cmd2(t_pipex *data);
-
 char	*ft_newjoin(char const *s1, char const *s2);
-
 char	*ft_slushjoin(char const *s1, char const *s2);
 
 #endif

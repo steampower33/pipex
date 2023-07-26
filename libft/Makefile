@@ -6,7 +6,7 @@
 #    By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 17:02:34 by seunlee2          #+#    #+#              #
-#    Updated: 2023/06/29 19:46:48 by seunlee2         ###   ########.fr        #
+#    Updated: 2023/07/26 10:41:21 by seunlee2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,6 @@ SRCS =	ft_isalpha.c			\
 		ft_lstclear_bonus.c		\
 		ft_lstiter_bonus.c		\
 		ft_lstmap_bonus.c		\
-		get_next_line_utils.c	\
-		get_next_line.c			\
 		
 OBJECTS = $(SRCS:.c=.o)
 
