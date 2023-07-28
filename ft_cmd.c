@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:52:34 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/25 21:54:13 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:12:58 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_cmd2(t_pipex *data)
 {
 	int		idx;
 
-	data->cmd2 = (char ***)malloc(sizeof(char **) * (3));
-	data->cmd2[2] = NULL;
+	data->cmd2 = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
+	data->cmd2[data->cmd_cnt] = NULL;
 	idx = 0;
-	while (idx < 2)
+	while (idx < data->cmd_cnt)
 	{
 		data->cmd2[idx] = ft_split(data->cmd1[idx], ' ');
 		idx++;

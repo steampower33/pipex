@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/26 18:01:05 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:51:24 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_pipex
 	char	**cmd_file;
 	char	**cmd1;
 	char	***cmd2;
+	int		fd[2];
+	int		*pid_child;
 }	t_pipex;
 
 char	*ft_check_path(t_pipex *data, char *cmd, char **envp);
@@ -36,9 +38,9 @@ void	ft_last_free(t_pipex *data);
 char	*ft_strndup(const char *src, size_t size);
 int		ft_len(char **argv);
 void	ft_error_handler(char *str);
-void	ft_child1(t_pipex *data, char **argv, char **envp, int *fd);
-void	ft_child2(t_pipex *data, char **argv, char **envp, int *fd);
-void	ft_make_pipe(t_pipex *data, char **argv, char **envp, int *fd);
+void	ft_child1(t_pipex *data, char **argv, char **envp);
+void	ft_child2(t_pipex *data, char **argv, char **envp);
+void	ft_make_pipe(t_pipex *data, char **argv, char **envp);
 int		ft_make_cmds(t_pipex *data);
 void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data);
 void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp);
