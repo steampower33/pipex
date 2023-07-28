@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:51:56 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/26 17:59:34 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:31:20 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_child1(t_pipex *data, char **argv, char **envp, int *fd)
 {
-	data->infile_fd = open(argv[1], O_RDONLY | O_CREAT, 0644);
+	data->infile_fd = open(argv[1], O_RDONLY, 0644);
 	if (data->infile_fd == -1)
 		ft_error_handler("File Open Error");
 	close(fd[0]);
