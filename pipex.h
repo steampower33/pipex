@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:06:00 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/28 19:46:29 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:39:30 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	ft_cmd2(t_pipex *data);
 char	*ft_newjoin(char const *s1, char const *s2);
 char	*ft_slushjoin(char const *s1, char const *s2);
 void	ft_fork_rec(t_pipex *data, char **argv, char **envp, int depth);
-void	ft_send_data(t_pipex *data, char **argv, char **envp);
 void	ft_child(t_pipex *data, char **argv, char **envp, int depth);
+void	ft_send_data(t_pipex *data, char **argv, char **envp);
+void	ft_inpipe(t_pipex *data, char **envp, int depth);
 void	ft_get_data(t_pipex *data, char **argv, char **envp);
 
 #endif
