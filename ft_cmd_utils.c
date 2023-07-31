@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:52:26 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/28 18:13:42 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:28:02 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,15 @@ int	ft_make_cmds(t_pipex *data)
 {
 	data->cmd_file = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
 	if (!data->cmd_file)
-		return (0);
+		ft_error_handler("Malloc Error");
 	data->cmd_file[data->cmd_cnt] = NULL;
 	data->cmd1 = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
 	if (!data->cmd1)
-		return (0);
+		ft_error_handler("Malloc Error");
 	data->cmd1[data->cmd_cnt] = NULL;
 	data->cmd2 = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
 	if (!data->cmd2)
-		return (0);
+		ft_error_handler("Malloc Error");
 	data->cmd2[data->cmd_cnt] = NULL;
 	return (1);
 }
