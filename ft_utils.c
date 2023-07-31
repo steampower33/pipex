@@ -6,39 +6,29 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:04:11 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/26 11:10:12 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:48:08 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_check_path(t_pipex *data, char *cmd, char **envp)
+char	*ft_check_path(t_pipex *data, char *cmd)
 {
 	int		i;
-	int		j;
 	char	*path;
 
 	if (access(cmd, X_OK) == 0)
-		return (cmd);
+		return (ft_strdup(cmd));
 	i = 0;
-	while (envp[i])
+	while (data->env_path[i])
 	{
-		if (ft_strnstr(envp[i], "PATH=", 5))
-		{
-			data->env_path = ft_split(envp[i] + 5, ':');
-			j = 0;
-			while (data->env_path[j])
-			{
-				path = ft_slushjoin(data->env_path[j], cmd);
-				if (access(path, X_OK) == 0)
-					return (path);
-				free(path);
-				j++;
-			}
-		}
+		path = ft_slushjoin(data->env_path[i], cmd);
+		if (access(path, X_OK) == 0)
+			return (path);
+		free(path);
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(cmd));
 }
 
 int	ft_len(char **argv)

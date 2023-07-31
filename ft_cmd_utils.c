@@ -6,13 +6,13 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:52:26 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/31 16:28:02 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:20:23 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
+void	ft_cnt_cmd(int argc, char **argv, t_pipex *data)
 {
 	int		idx;
 	int		cnt;
@@ -26,7 +26,7 @@ void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
 	{
 		str = ft_split(argv[idx], ' ');
 		if (str[0])
-			file = ft_check_path(data, str[0], envp);
+			file = ft_check_path(data, str[0]);
 		if (str)
 			ft_all_free(str);
 		if (file)
@@ -40,7 +40,7 @@ void	ft_cnt_cmd(int argc, char **argv, char **envp, t_pipex *data)
 	data->cmd_cnt = cnt;
 }
 
-void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
+void	ft_cmd_file(int argc, t_pipex *data, char **argv)
 {
 	int		idx;
 	char	**str;
@@ -55,7 +55,7 @@ void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
 	{
 		str = ft_split(argv[idx], ' ');
 		if (str[0])
-			file = ft_check_path(data, str[0], envp);
+			file = ft_check_path(data, str[0]);
 		if (str)
 			ft_all_free(str);
 		if (file)
@@ -68,44 +68,15 @@ void	ft_cmd_file(int argc, t_pipex *data, char **argv, char **envp)
 	}
 }
 
-char	*ft_get_file(char *argv, char **envp, t_pipex *data, int *flag)
-{
-	char	**str;
-	char	*file;
-
-	str = NULL;
-	file = NULL;
-	if (ft_strchr(argv, ' '))
-	{
-		str = ft_split(argv, ' ');
-		file = ft_check_path(data, str[0], envp);
-	}
-	else if (argv[0])
-		file = ft_check_path(data, argv, envp);
-	if (str && file)
-		*flag = 0;
-	else if (!str && file)
-		*flag = 1;
-	else if (!str && !file)
-		*flag = 2;
-	if (str)
-		free(str);
-	return (file);
-}
-
 int	ft_make_cmds(t_pipex *data)
 {
 	data->cmd_file = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
 	if (!data->cmd_file)
 		ft_error_handler("Malloc Error");
 	data->cmd_file[data->cmd_cnt] = NULL;
-	data->cmd1 = (char **)malloc(sizeof(char *) * (data->cmd_cnt + 1));
-	if (!data->cmd1)
+	data->cmd = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
+	if (!data->cmd)
 		ft_error_handler("Malloc Error");
-	data->cmd1[data->cmd_cnt] = NULL;
-	data->cmd2 = (char ***)malloc(sizeof(char **) * (data->cmd_cnt + 1));
-	if (!data->cmd2)
-		ft_error_handler("Malloc Error");
-	data->cmd2[data->cmd_cnt] = NULL;
+	data->cmd[data->cmd_cnt] = NULL;
 	return (1);
 }

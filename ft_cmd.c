@@ -6,60 +6,33 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:52:34 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/31 17:36:37 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:23:47 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cmd1(int argc, char **argv, char **envp, t_pipex *data)
+void	ft_cmd(int argc, char **argv, t_pipex *data)
 {
 	int		idx;
-	char	*file;
-	int		cnt;
-	int		flag;
-	char	*tmp;
 
 	idx = 2;
-	cnt = -1;
 	while (idx < argc - 1)
 	{
-		file = ft_get_file(argv[idx], envp, data, &flag);
-		if (flag == 0 || flag == 1)
-			data->cmd1[++cnt] = ft_strdup(argv[idx]);
-		else if (flag == 2)
+		if (ft_strnstr(argv[idx], "awk", 3))
 		{
-			tmp = data->cmd1[cnt];
-			data->cmd1[cnt] = ft_newjoin(tmp, argv[idx]);
-			free(tmp);
-		}
-		free(file);
-		idx++;
-	}
-	ft_cmd2(data);
-}
-
-void	ft_cmd2(t_pipex *data)
-{
-	int		idx;
-
-	idx = 0;
-	while (idx < data->cmd_cnt)
-	{
-		if (ft_strnstr(data->cmd1[idx], "awk", 3))
-		{
-			data->cmd2[idx] = (char **)malloc(sizeof(char *) * 3);
-			if (!data->cmd2[idx])
+			data->cmd[idx - 2] = (char **)malloc(sizeof(char *) * 3);
+			if (!data->cmd[idx - 2])
 				ft_error_handler("Malloc Error");
-			data->cmd2[idx][0] = ft_strdup("awk");
-			if (*(data->cmd1[idx] + 4) == '\'')
-				data->cmd2[idx][1] = ft_strtrim(data->cmd1[idx] + 4, "\'");
-			else if (*(data->cmd1[idx] + 4) == '"')
-				data->cmd2[idx][1] = ft_strtrim(data->cmd1[idx] + 4, "\"");
-			data->cmd2[idx][2] = NULL;
+			data->cmd[idx - 2][0] = ft_strdup("awk");
+			if (*(argv[idx] + 4) == '\'')
+				data->cmd[idx - 2][1] = ft_strtrim(argv[idx] + 4, "\'");
+			else if (*(argv[idx] + 4) == '\"')
+				data->cmd[idx - 2][1] = ft_strtrim(argv[idx] + 4, "\"");
+			data->cmd[idx - 2][2] = NULL;
 		}
 		else
-			data->cmd2[idx] = ft_split(data->cmd1[idx], ' ');
+			data->cmd[idx - 2] = ft_split(argv[idx], ' ');
 		idx++;
 	}
 }
