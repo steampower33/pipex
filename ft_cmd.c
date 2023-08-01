@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:52:34 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/07/31 21:23:47 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:45:52 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_cmd(int argc, char **argv, t_pipex *data)
 		{
 			data->cmd[idx - 2] = (char **)malloc(sizeof(char *) * 3);
 			if (!data->cmd[idx - 2])
-				ft_error_handler("Malloc Error");
+				ft_error_handler("malloc error", 1);
 			data->cmd[idx - 2][0] = ft_strdup("awk");
 			if (*(argv[idx] + 4) == '\'')
 				data->cmd[idx - 2][1] = ft_strtrim(argv[idx] + 4, "\'");
