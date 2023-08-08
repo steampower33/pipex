@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:51:56 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/08/07 17:42:52 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:26:45 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		ft_error_handler("does not 5 auguments", 1);
 	data = (t_pipex *)malloc(sizeof(t_pipex));
+	if (!data)
+		return (0);
 	data->env_path = ft_env_chk(envp);
 	if (!data->env_path)
 		ft_error_handler("envp does not exist", 1);

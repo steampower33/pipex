@@ -6,7 +6,7 @@
 /*   By: seunlee2 <seunlee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:56:50 by seunlee2          #+#    #+#             */
-/*   Updated: 2023/08/01 16:43:21 by seunlee2         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:26:34 by seunlee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_last_free(t_pipex *data)
 	while (data->cmd[idx])
 		ft_all_free(data->cmd[idx++]);
 	free(data->cmd);
+	free(data);
 }
 
 void	ft_error_handler(char *str, int err_code)
